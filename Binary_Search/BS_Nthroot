@@ -1,0 +1,32 @@
+'''Enter N:3
+Enter the number:27
+The square root of the number is: 3
+
+Enter N:4
+Enter the number:69
+The square root of the number is: -1'''
+def multfunction(mid,n,m):
+    ans=1
+    for i in range(1,n+1):
+        ans*=mid
+        if ans > m:
+            return 2
+    if ans == m:
+        return 1
+    return 0
+def NthRoot(n,m):
+    low=1
+    high = m
+    while(low <= high):
+        mid=(low+high)//2
+        temp=multfunction(mid,n,m)
+        if(temp==1):
+            return mid
+        elif(temp==0):
+            low=mid+1
+        else:
+            high=mid-1
+    return -1
+n=int(input("Enter N:"))
+m=int(input("Enter the number:"))
+print("The square root of the number is:",NthRoot(n,m))
