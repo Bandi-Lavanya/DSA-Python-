@@ -15,4 +15,4 @@ print(reverseWords2("  Hello   World  "))  # Output: "World Hello"
 
 def reverseWords3(s):
     return ' '.join(s.split()[::-1])
-print(reverseWords3("  Hello   World  "))  # Output: "World Hello"
+print(reverseWords3("  Hello   World  "))

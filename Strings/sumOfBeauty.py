@@ -31,4 +31,4 @@ def beautySum_brute(s: str) -> int:
     return total
 
 print(beautySum("aabcb"))  # Output: 5
-print(beautySum_brute("aabcb"))  # Output: 5
+print(beautySum_brute("aabcb"))  
