@@ -41,6 +41,47 @@ def print_dll(head):
         head = head.next
     print()
 
+# Function to reverse the
+# linked list using a stack
+def reverse_linked_list(head):
+    # Create a temporary pointer
+    # to traverse the linked list
+    temp = head  
+    
+    # Create a stack to temporarily
+    # store the data values
+    stack = []   
+
+    # Step 1: Push the values of the
+    # linked list onto the stack
+    while temp is not None:
+        # Push the current node's
+        # data onto the stack
+        stack.append(temp.data) 
+        # Move to the next node
+        # in the linked list
+        temp = temp.next        
+
+    # Reset the temporary pointer
+    # to the head of the linked list
+    temp = head  
+
+    # Step 2: Pop values from the stack
+    # and update the linked list
+    while temp is not None:
+        
+        # Set the current node's data to
+        # the value at the top of the stack
+        temp.data = stack.pop()  
+        
+         # Move to the next node in
+         # the linked list
+        temp = temp.next        
+
+    # Return the new head of
+    # the reversed linked list
+    return head
+
 def reverse_dll(head):
     # Check if the list is empty
     # or has only one node
@@ -91,6 +132,15 @@ print('Doubly Linked List After Reversing :')
 
 # Reverse the doubly linked list
 head = reverse_dll(head)
+# Print the reversed doubly linked list
+print_dll(head)
+print('Doubly Linked List Initially:  ')
+print_dll(head)
+
+print('Doubly Linked List After Reversing :')
+
+# Reverse the doubly linked list
+head = reverse_linked_list(head)
 # Print the reversed doubly linked list
 print_dll(head)
 
