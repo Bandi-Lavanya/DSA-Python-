@@ -1,6 +1,7 @@
 '''Output:
-Loop detected in the linked list.
-Loop detected in the linked list.'''
+Loop detected in the linked list at point: 3
+Loop detected. Starting node of the loop is: 3'''
+#Loop detected in the linked list at point: 3
 #Node class represents
 # a node in a linked list
 class Node:
@@ -24,7 +25,7 @@ def detect_loop_brute(head):
         # If the node is already
         # in the set, there is a loop
         if temp in node_set:
-            return True
+            return temp
 
         # Store the current node in the set
         node_set.add(temp)
@@ -34,32 +35,44 @@ def detect_loop_brute(head):
 
     # Step 3: If the list is successfully
     # traversed without a loop, return False
-    return False
+    return None
 
-
-# Function to detect a loop in a
-# linked list using the Tortoise and Hare Algorithm
-def detect_cycle_optimal(head):
-    # Initialize two pointers, slow and fast,
-    # to the head of the linked list
+def first_node_optimal(head):
+    # Initialize a slow and fast
+    # pointers to the head of the list
     slow = head
     fast = head
 
-    # Step 2: Traverse the linked list
-    # with the slow and fast pointers
+    # Phase 1: Detect the loop
     while fast is not None and fast.next is not None:
         # Move slow one step
         slow = slow.next
+
         # Move fast two steps
         fast = fast.next.next
 
-        # Check if slow and fast pointers meet
+        # If slow and fast meet,
+        # a loop is detected
         if slow == fast:
-            return True  # Loop detected
+            # Reset the slow pointer
+            # to the head of the list
+            slow = head
 
-    # If fast reaches the end of the
-    # list, there is no loop
-    return False
+            # Phase 2: Find the first
+            # node of the loop
+            while slow != fast:
+                # Move slow and fast one
+                # step at a time
+                slow = slow.next
+                fast = fast.next
+
+                # When slow and fast meet again,
+                # it's the first node of the loop
+            return slow
+
+    # If no loop is found, return None
+    return None
+
 
 if __name__ == "__main__":
     # Create a sample linked list with
@@ -76,17 +89,9 @@ if __name__ == "__main__":
     fourth.next = fifth
     # Create a loop
     fifth.next = third
-
-    # Check if there is a loop
-    # in the linked list
-    if detect_loop_brute(head):
-        print("Loop detected in the linked list.")
+    print("Loop detected in the linked list at point:", detect_loop_brute(head).data)
+    loop_start_node = first_node_optimal(head)
+    if loop_start_node:
+        print("Loop detected. Starting node of the loop is:", loop_start_node.data)
     else:
         print("No loop detected in the linked list.")
-
-    if detect_cycle_optimal(head):
-        print("Loop detected in the linked list.")
-    else:
-        print("No loop detected in the linked list.")
-    # No need to explicitly free memory
-    # in Python; memory management is automatic
