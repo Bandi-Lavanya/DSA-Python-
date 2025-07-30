@@ -1,3 +1,5 @@
+'''1 2 3 2 4 5 1 0 0 0
+1 2 3 2 4 5 1 0 0 0'''
 def move_zeros_brutforce(n, a):
     # Temporary list to store non-zero elements
     temp = []
