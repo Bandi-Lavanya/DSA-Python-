@@ -1,0 +1,46 @@
+def isValid1(s):
+    st = []
+    for it in s:
+        if it == '(' or it == '{' or it == '[':
+            st.append(it)
+        else:
+            if len(st) == 0:
+                return False
+            ch = st[-1]
+            st.pop()
+            if (it == ')' and ch == '(') or (it == ']' and ch == '[') or (it == '}' and ch == '{'):
+                continue
+            else:
+                return False
+    return len(st) == 0
+
+s = "()[{}()]"
+if isValid1(s):
+    print("True")
+else:
+    print("False")
+
+def isValid2(s):
+    stack = []
+    mapping = {')': '(', '}': '{', ']': '['}
+    
+    for char in s:
+        if char in mapping:
+            # Pop the top element if available, else use a dummy value
+            topele = stack.pop() if stack else "#"
+            if topele != mapping[char]:
+                return False
+        else:
+            # It's an opening bracket, push to stack
+            stack.append(char)
+    
+    # If stack is empty at the end, all brackets matched
+    return not stack
+
+
+# Test
+s = "()[{}()]"
+if isValid2(s):
+    print("True")
+else:
+    print("False")
