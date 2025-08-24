@@ -1,3 +1,8 @@
+'''The maximum subarray sum is: 6
+The maximum subarray sum is: 6
+The maximum subarray sum is: 6
+The subarray is: [4 -1 2 1 ]'''
+
 def max_subarray_sum_brute(arr, n):
     maxi = float('-inf')  # Equivalent to Integer.MIN_VALUE
 
